@@ -1,0 +1,1 @@
+curl https://artifactory.teslamotors.com/ui/api/v1/access/api/ui/users/user_profile/api_key -v
