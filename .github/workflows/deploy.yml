@@ -11,9 +11,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    environment: github-pages   # ✅ 这里必须加
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v5
 
       - name: Configure Pages
@@ -22,8 +22,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: '.'    # 上传整个仓库内容
+          path: '.'   # 上传整个仓库内容，包括 .well-known
 
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
