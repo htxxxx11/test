@@ -22,7 +22,7 @@ jobs:
       - name: Upload .well-known folder
         uses: actions/upload-pages-artifact@v4
         with:
-          path: '.well-known'   # ✅ 只上传 .well-known 文件夹
+          path: 'docs/.well-known'   # ✅ 只上传 .well-known 文件夹
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
