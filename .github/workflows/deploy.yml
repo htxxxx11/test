@@ -1,24 +1,29 @@
-name: Deploy GitHub Pages
+name: Deploy Pages
 
 on:
   push:
-    branches:
-      - main  # 当 main 分支有 push 时触发
+    branches: [ main ]
+
+permissions:
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      # 1️⃣ 检出仓库
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v5
 
-      # 2️⃣ 上传网站内容
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: .  # 发布整个仓库内容，包括 .well-known
+          path: '.'    # 上传整个仓库内容
 
-      # 3️⃣ 部署到 GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        id: deployment
+        uses: actions/deploy-pages@v4
